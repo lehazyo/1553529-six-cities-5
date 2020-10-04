@@ -1,6 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+const availableOffersTitle = (props) => {
+  if (props.availableOffersCount === 0) {
+    return (
+      <span>No offers available</span>
+    );
+  };
+
+  return (
+    <span>{props.availableOffersCount} {singularOrPlural(props.availableOffersCount, "offer", "offers")} available</span>
+  );
+};
+
+
+const singularOrPlural = (count, singular, plural) => {
+  if (count === 1) {
+    return singular;
+  }
+
+  return plural;
+}
+
 const Title = (props) => {
 
   return (
@@ -48,6 +69,7 @@ const Title = (props) => {
             <div className="locations__item">
               <a className="locations__item-link" href="#">
                 <span>Amsterdam</span>
+                {availableOffersTitle(props)}
               </a>
             </div>
           </section>
