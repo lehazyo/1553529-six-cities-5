@@ -5,10 +5,14 @@ import Title from "../Title/Title";
 const App = (props) => {
 
   return (
-    <Title 
+    <Title
       availableOffersCount={props.availableOffersCount}
     />
   );
+};
+
+App.propTypes = {
+  availableOffersCount: PropTypes.number.isRequired,
 };
 
 export default App;

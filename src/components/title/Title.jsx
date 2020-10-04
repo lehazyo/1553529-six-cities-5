@@ -1,28 +1,27 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const availableOffersTitle = (props) => {
-  if (props.availableOffersCount === 0) {
+const Title = (props) => {
+  const availableOffersTitle = () => {
+    if (props.availableOffersCount === 0) {
+      return (
+        <span>No offers available</span>
+      );
+    }
+
     return (
-      <span>No offers available</span>
+      <span>{props.availableOffersCount} {singularOrPlural(props.availableOffersCount, `offer`, `offers`)} available</span>
     );
   };
 
-  return (
-    <span>{props.availableOffersCount} {singularOrPlural(props.availableOffersCount, "offer", "offers")} available</span>
-  );
-};
 
+  const singularOrPlural = (count, singular, plural) => {
+    if (count === 1) {
+      return singular;
+    }
 
-const singularOrPlural = (count, singular, plural) => {
-  if (count === 1) {
-    return singular;
-  }
-
-  return plural;
-}
-
-const Title = (props) => {
+    return plural;
+  };
 
   return (
     <div className="page page--gray page--login">
@@ -77,6 +76,10 @@ const Title = (props) => {
       </main>
     </div>
   );
+};
+
+Title.propTypes = {
+  availableOffersCount: PropTypes.number.isRequired,
 };
 
 export default Title;
