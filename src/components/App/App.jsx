@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Main from "../Main/Main";
 import Sign from "../Sign/Sign";
 import Favorites from "../Favorites/Favorites";

@@ -1,18 +1,29 @@
 import React from "react";
-import PropTypes from "prop-types";
-import Title from "../Title/Title";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
+import Main from "../Main/Main";
+import Sign from "../Sign/Sign";
+import Favorites from "../Favorites/Favorites";
+import Offer from "../Offer/Offer";
 
-const App = (props) => {
-
+const App = () => {
   return (
-    <Title
-      availableOffersCount={props.availableOffersCount}
-    />
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/">
+          <Main />
+        </Route>
+        <Route exact path="/login">
+          <Sign />
+        </Route>
+        <Route exact path="/favorites">
+          <Favorites />
+        </Route>
+        <Route exact path="/offer/:offerId">
+          <Offer />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
-};
-
-App.propTypes = {
-  availableOffersCount: PropTypes.number.isRequired,
 };
 
 export default App;
