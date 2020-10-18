@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Квартира на Пушкинской",
+    "pricePerNight": 100,
+    "guests": 8
+  },
+  {
+    "id": 2,
+    "title": "Квартира на Планерной",
+    "pricePerNight": 102,
+    "guests": 2
+  },
+  {
+    "id": 3,
+    "title": "Квартира на Авиамоторной",
+    "pricePerNight": 103,
+    "guests": 3
+  },
+  {
+    "id": 4,
+    "title": "Апартаменты на Ленина",
+    "pricePerNight": 104,
+    "guests": 5
+  }
+] 
