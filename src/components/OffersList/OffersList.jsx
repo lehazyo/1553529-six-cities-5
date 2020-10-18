@@ -7,31 +7,25 @@ class OffersList extends React.Component {
     super(props);
 
     this.state = {
-      "activeId": 0
+      activeId: 0
     };
   }
 
   setActiveComponent(cardId) {
     this.setState({
-      "activeId": cardId
+      activeId: cardId
     });
   }
 
   render() {
-    let offersArray = [];
-    for (let i = 0; i < this.props.offers.length; i++) {
-      let offerComponent = (
-        <OfferCard
-          key={this.props.offers[i].id}
-          isActive={this.state.activeId === this.props.offers[i].id}
-          offer={this.props.offers[i]}
-          setActiveComponent={this.setActiveComponent.bind(this)}
-        />
-      );
-      offersArray.push(offerComponent);
-    }
-
-    return offersArray;
+    return this.props.offers.map((offer) => {
+      return <OfferCard
+        key={offer.id}
+        isActive={this.state.activeId === offer.id}
+        offer={offer}
+        setActiveComponent={this.setActiveComponent.bind(this)}
+      />;
+    });
   }
 }
 

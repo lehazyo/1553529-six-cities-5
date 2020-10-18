@@ -3,10 +3,6 @@ import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 
 class OfferCard extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleOnMouseLeave() {
     this.props.setActiveComponent(0);
   }

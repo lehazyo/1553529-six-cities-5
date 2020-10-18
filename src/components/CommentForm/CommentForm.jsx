@@ -37,7 +37,9 @@ class CommentForm extends React.Component {
     } else {
       this.setState({
         errorText: ``,
-        success: true
+        success: true,
+        review: formData.get(`review`),
+        rating: formData.get(`rating`)
       });
 
       return true;
