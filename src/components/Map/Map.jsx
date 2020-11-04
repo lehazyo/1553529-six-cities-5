@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "../../../node_modules/leaflet/dist/leaflet.css";
+import "leaflet/dist/leaflet.css";
 import leaflet from "leaflet";
 
 class Map extends React.Component {
@@ -39,7 +39,9 @@ class Map extends React.Component {
 }
 
 Map.propTypes = {
-  offers: PropTypes.array
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    coords: PropTypes.arrayOf(PropTypes.number).isRequired
+  })).isRequired
 };
 
 export default Map;
