@@ -1,36 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import OfferCard from "../OfferCard/OfferCard";
+import {connect} from "react-redux";
 
 class OffersList extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      activeId: 0
-    };
-  }
-
-  setActiveComponent(cardId) {
-    this.setState({
-      activeId: cardId
-    });
-  }
-
   render() {
-    return this.props.offers.map((offer) => {
+    return this.props.selectedCityOffers.map((offer) => {
       return <OfferCard
         key={offer.id}
-        isActive={this.state.activeId === offer.id}
         offer={offer}
-        setActiveComponent={this.setActiveComponent.bind(this)}
       />;
     });
   }
 }
 
 OffersList.propTypes = {
-  offers: PropTypes.array
+  selectedCityOffers: PropTypes.array
 };
 
-export default OffersList;
+const mapStateToProps = (state) => ({
+  selectedCityOffers: state.selectedCityOffers
+});
+
+export {OffersList};
+export default connect(mapStateToProps)(OffersList);

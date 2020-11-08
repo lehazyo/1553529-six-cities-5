@@ -3,24 +3,56 @@
     "id": 1,
     "title": "Квартира на Пушкинской",
     "pricePerNight": 100,
-    "guests": 8
+    "guests": 8,
+    "cityId": 1
   },
   {
     "id": 2,
     "title": "Квартира на Планерной",
     "pricePerNight": 102,
-    "guests": 2
+    "guests": 2,
+    "cityId": 2
   },
   {
     "id": 3,
     "title": "Квартира на Авиамоторной",
     "pricePerNight": 103,
-    "guests": 3
+    "guests": 3,
+    "cityId": 3
   },
   {
     "id": 4,
     "title": "Апартаменты на Ленина",
     "pricePerNight": 104,
-    "guests": 5
+    "guests": 5,
+    "cityId": 4
+  },
+  {
+    "id": 5,
+    "title": "Квартира на Большой Морской",
+    "pricePerNight": 100,
+    "guests": 8,
+    "cityId": 5
+  },
+  {
+    "id": 6,
+    "title": "Апартаменты на Плуталова",
+    "pricePerNight": 102,
+    "guests": 2,
+    "cityId": 6
+  },
+  {
+    "id": 7,
+    "title": "Квартира на Таранова",
+    "pricePerNight": 103,
+    "guests": 3,
+    "cityId": 1
+  },
+  {
+    "id": 8,
+    "title": "Апартаменты на Маркса",
+    "pricePerNight": 104,
+    "guests": 5,
+    "cityId": 2
   }
 ] 
