@@ -35,10 +35,10 @@ const Room = (props) => {
 
       <main className="page__main page__main--property">
         {props.isFetching
-        ? (
-          <div style={{textAlign: `center`}}>Loading...</div>
-        )
-        : (
+          ? (
+            <div style={{textAlign: `center`}}>Loading...</div>
+          )
+          : (
           <>
             <section className="property">
               {room.images.length && (
@@ -52,7 +52,7 @@ const Room = (props) => {
                         <div key={index} className="property__image-wrapper">
                           <img className="property__image" src={image} alt={room.title} />
                         </div>
-                      )
+                      );
                     })}
                   </div>
                 </div>
@@ -77,7 +77,7 @@ const Room = (props) => {
                   </div>
                   <div className="property__rating rating">
                     <div className="property__stars rating__stars">
-                      <span style={{width: (room.rating / 5 * 100) + "%"}}></span>
+                      <span style={{width: (room.rating / 5 * 100) + `%`}}></span>
                       <span className="visually-hidden">Rating</span>
                     </div>
                     <span className="property__rating-value rating__value">{room.rating}</span>
@@ -88,9 +88,7 @@ const Room = (props) => {
                     </li>
                     <li className="property__feature property__feature--bedrooms">
                       {room.bedrooms
-                        ? room.bedrooms > 1
-                          ? room.bedrooms + ` Bedrooms`
-                          : `1 Bedroom`
+                        ? room.bedrooms + ` Bedroom` + (room.bedrooms > 1 ? `s` : 0)
                         : `No bedroom`
                       }
                     </li>
@@ -177,7 +175,7 @@ const Room = (props) => {
               </section>
             </div>
           </>
-        )}
+          )}
       </main>
     </div>
   );
@@ -187,7 +185,8 @@ Room.propTypes = {
   room: PropTypes.object,
   isFetching: PropTypes.bool,
   selectedCityOffers: PropTypes.array,
-  offersByIds: PropTypes.object
+  offersByIds: PropTypes.object,
+  match: PropTypes.object
 };
 
 const mapStateToProps = (state) => ({

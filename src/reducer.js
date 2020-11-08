@@ -3,12 +3,12 @@ import {extend} from "./utils.js";
 
 const filterByCityName = (offersArray, cityName) => {
   return offersArray.filter((offer) => offer.city.name === cityName);
-}
+};
 
 const initialState = {
   cities: [],
   selectedCityId: null,
-  selectedCityName: '',
+  selectedCityName: ``,
   selectedCityOffers: [],
   selectedCityCoords: [59.0, 30.0],
   offers: [],
@@ -36,18 +36,18 @@ const reducer = (state = initialState, action) => {
 
       return extend(state, {
         offers: action.payload,
-        offersByIds: offersByIds
-      })
+        offersByIds
+      });
 
     case ActionType.SET_IS_FETCHING:
       return extend(state, {
         isFetching: action.payload
-      })
+      });
 
     case ActionType.SET_CITIES:
       return extend(state, {
         cities: action.payload
-      })
+      });
   }
 
   return state;

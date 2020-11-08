@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import Main from "../Main/Main";
 import Sign from "../Sign/Sign";
@@ -11,14 +12,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    const offersFetch = fetch("https://5.react.pages.academy/six-cities/hotels");
+    const offersFetch = fetch(`https://5.react.pages.academy/six-cities/hotels`);
 
     offersFetch
       .then((response) => response.json())
       .then((responseObject) => {
         let citiesObject = {};
         let citiesArray = [];
-    
+
         responseObject.forEach((offer) => {
           if (citiesObject[offer.city.name] !== undefined) {
             return;
@@ -26,12 +27,12 @@ class App extends React.Component {
           citiesObject[offer.city.name] = offer.city;
           citiesArray.push(offer.city);
         });
-    
+
         props.setCities(citiesArray);
         props.setOffers(responseObject);
         props.setCityId(0);
         props.setIsFetching(false);
-    });
+      });
   }
 
   render() {
@@ -50,16 +51,19 @@ class App extends React.Component {
           <Route
             exact
             path="/offer/:offerId"
-            component={Room} 
+            component={Room}
           />
         </Switch>
       </BrowserRouter>
     );
   }
-};
+}
 
 App.propTypes = {
-
+  setCities: PropTypes.func,
+  setOffers: PropTypes.func,
+  setCityId: PropTypes.func,
+  setIsFetching: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({

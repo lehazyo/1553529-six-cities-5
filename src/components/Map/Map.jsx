@@ -18,7 +18,7 @@ class Map extends React.Component {
       zoomControl: false,
       marker: true
     });
-    
+
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
@@ -57,7 +57,11 @@ class Map extends React.Component {
 }
 
 Map.propTypes = {
-  offers: PropTypes.array
+  offers: PropTypes.array,
+  selectedCityCoords: PropTypes.array,
+  selectedCityOffers: PropTypes.array,
+  width: PropTypes.string,
+  height: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({

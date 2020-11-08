@@ -1,2 +1,0 @@
-import {ActionCreator} from './action';
-

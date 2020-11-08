@@ -77,7 +77,8 @@ const Main = (props) => {
 
 Main.propTypes = {
   selectedCityName: PropTypes.string,
-  selectedCityOffers: PropTypes.array
+  selectedCityOffers: PropTypes.array,
+  cityOffers: PropTypes.array
 };
 
 const mapStateToProps = (state) => ({

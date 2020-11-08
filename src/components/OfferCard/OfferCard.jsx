@@ -29,7 +29,7 @@ class OfferCard extends React.Component {
           </div>
           <div className="place-card__rating rating">
             <div className="place-card__stars rating__stars" title={`Rating: ${theOffer.rating}/5`}>
-              <span style={{width: (theOffer.rating / 5 * 100) + "%"}}></span>
+              <span style={{width: (theOffer.rating / 5 * 100) + `%`}}></span>
               <span className="visually-hidden">Rating</span>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import { ActionCreator } from "../../action";
+import {ActionCreator} from "../../action";
 
 class CitiesList extends React.Component {
   handleOnClick(cityId) {
@@ -29,11 +29,12 @@ class CitiesList extends React.Component {
       </section>
     );
   }
-};
+}
 
 CitiesList.propTypes = {
   cities: PropTypes.array,
-  selectedCityName: PropTypes.string
+  selectedCityName: PropTypes.string,
+  setCityId: PropTypes.func
 };
 
 const mapStateToProps = (state) => ({
