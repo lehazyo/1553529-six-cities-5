@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import OffersList from "../OffersList/OffersList";
-import CitiesList from "../CitiesList/CitiesList";
+import Cities from "../Cities/Cities";
 import Map from "../Map/Map";
 import {connect} from "react-redux";
 
@@ -34,13 +34,13 @@ const Main = (props) => {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <CitiesList />
+          <Cities />
         </div>
         <div className="cities">
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{props.selectedCityOffers.length} places to stay in {props.selectedCityName}</b>
+              <b className="places__found">{props.selectedCity.offers.length} places to stay in {props.selectedCity.name}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -58,7 +58,7 @@ const Main = (props) => {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <OffersList
-                  offers={props.cityOffers}
+                  offers={props.selectedCity.offers}
                 />
               </div>
             </section>
@@ -76,14 +76,49 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  selectedCityName: PropTypes.string,
-  selectedCityOffers: PropTypes.array,
-  cityOffers: PropTypes.array
+  selectedCity: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    offers: PropTypes.arrayOf(PropTypes.shape({
+      city: PropTypes.shape({
+        name: PropTypes.string,
+        location: PropTypes.shape({
+          latitude: PropTypes.number,
+          longitude: PropTypes.number
+        }),
+        zoom: PropTypes.number
+      }),
+      previewImage: PropTypes.string,
+      images: PropTypes.arrayOf(PropTypes.string),
+      title: PropTypes.string,
+      isFavorite: PropTypes.bool,
+      isPremium: PropTypes.bool,
+      rating: PropTypes.number,
+      type: PropTypes.oneOf([`house`, `room`, `apartment`, `hotel`]),
+      bedrooms: PropTypes.number,
+      maxAdults: PropTypes.number,
+      price: PropTypes.number,
+      goods: PropTypes.arrayOf(PropTypes.string),
+      host: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        isPro: PropTypes.bool,
+        avatarUrl: PropTypes.string
+      }),
+      description: PropTypes.string,
+      location: PropTypes.shape({
+        latitude: PropTypes.number,
+        londitude: PropTypes.number,
+        zoom: PropTypes.number
+      }),
+      id: PropTypes.number
+    })),
+    coords: PropTypes.arrayOf(PropTypes.number)
+  })
 };
 
 const mapStateToProps = (state) => ({
-  selectedCityName: state.selectedCityName,
-  selectedCityOffers: state.selectedCityOffers
+  selectedCity: state.selectedCity,
 });
 
 export {Main};

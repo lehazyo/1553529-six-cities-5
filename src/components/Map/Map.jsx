@@ -5,16 +5,12 @@ import leaflet from "leaflet";
 import {connect} from "react-redux";
 
 class Map extends React.Component {
-  initializeMap() {
-    this.zoom = 12;
-    this.icon = leaflet.icon({
-      iconUrl: `img/pin.svg`,
-      iconSize: [27, 39]
-    });
+  _initializeMap() {
+    const zoom = 12;
 
     this.map = leaflet.map(`map`, {
-      center: this.props.selectedCityCoords,
-      zoom: this.zoom,
+      center: this.props.selectedCity.coords,
+      zoom,
       zoomControl: false,
       marker: true
     });
@@ -27,7 +23,7 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
-    this.initializeMap();
+    this._initializeMap();
 
     this.refreshMap();
   }
@@ -35,18 +31,24 @@ class Map extends React.Component {
   componentDidUpdate() {
     this.map.remove();
 
-    this.initializeMap();
+    this._initializeMap();
 
     this.refreshMap();
   }
 
   refreshMap() {
-    this.map.setView(this.props.selectedCityCoords, this.zoom);
+    const zoom = 12;
+    const icon = leaflet.icon({
+      iconUrl: `/img/pin.svg`,
+      iconSize: [27, 39]
+    });
 
-    this.props.selectedCityOffers.forEach((offer) => {
+    this.map.setView(this.props.selectedCity.coords, zoom);
+
+    this.props.selectedCity.offers.forEach((offer) => {
       const coords = [offer.location.latitude, offer.location.longitude];
       leaflet
-        .marker(coords, {icon: this.icon})
+        .marker(coords, {icon})
         .addTo(this.map);
     });
   }
@@ -57,16 +59,51 @@ class Map extends React.Component {
 }
 
 Map.propTypes = {
-  offers: PropTypes.array,
-  selectedCityCoords: PropTypes.array,
-  selectedCityOffers: PropTypes.array,
+  selectedCity: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    offers: PropTypes.arrayOf(PropTypes.shape({
+      city: PropTypes.shape({
+        name: PropTypes.string,
+        location: PropTypes.shape({
+          latitude: PropTypes.number,
+          longitude: PropTypes.number
+        }),
+        zoom: PropTypes.number
+      }),
+      previewImage: PropTypes.string,
+      images: PropTypes.arrayOf(PropTypes.string),
+      title: PropTypes.string,
+      isFavorite: PropTypes.bool,
+      isPremium: PropTypes.bool,
+      rating: PropTypes.number,
+      type: PropTypes.oneOf([`house`, `room`, `apartment`, `hotel`]),
+      bedrooms: PropTypes.number,
+      maxAdults: PropTypes.number,
+      price: PropTypes.number,
+      goods: PropTypes.arrayOf(PropTypes.string),
+      host: PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        isPro: PropTypes.bool,
+        avatarUrl: PropTypes.string
+      }),
+      description: PropTypes.string,
+      location: PropTypes.shape({
+        latitude: PropTypes.number,
+        londitude: PropTypes.number,
+        zoom: PropTypes.number
+      }),
+      id: PropTypes.number
+    })),
+    coords: PropTypes.arrayOf(PropTypes.number)
+  }),
   width: PropTypes.string,
   height: PropTypes.string
 };
 
 const mapStateToProps = (state) => ({
-  selectedCityCoords: state.selectedCityCoords,
-  selectedCityOffers: state.selectedCityOffers
+  selectedCity: state.selectedCity,
 });
 
 export {Map};

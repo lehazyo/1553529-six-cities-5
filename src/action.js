@@ -1,8 +1,8 @@
 export const ActionType = {
   SET_CITY_ID: `SET_CITY_ID`,
   SET_OFFERS: `SET_OFERS`,
-  SET_IS_FETCHING: `SET_IS_FETCHING`,
-  SET_CITIES: `SET_CITIES`
+  SET_CITIES: `SET_CITIES`,
+  SET_ROOM_ID: `SET_ROOM_ID`,
 };
 
 export const ActionCreator = {
@@ -14,12 +14,12 @@ export const ActionCreator = {
     type: ActionType.SET_OFFERS,
     payload: offers
   }),
-  setIsFetching: (value) => ({
-    type: ActionType.SET_IS_FETCHING,
-    payload: value
-  }),
   setCities: (value) => ({
     type: ActionType.SET_CITIES,
+    payload: value
+  }),
+  setRoomId: (value) => ({
+    type: ActionType.SET_ROOM_ID,
     payload: value
   })
 };
