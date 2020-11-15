@@ -96,6 +96,8 @@ const Main = (props) => {
             <div className="cities__right-section">
               <Map
                 offers={props.offers}
+                width={`512px`}
+                height={`100%`}
               />
             </div>
           </div>
