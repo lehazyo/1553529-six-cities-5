@@ -5,8 +5,6 @@ import Main from "../Main/Main";
 import Sign from "../Sign/Sign";
 import Favorites from "../Favorites/Favorites";
 import Room from "../Room/Room";
-import {connect} from "react-redux";
-import {ActionCreator} from "../../action.js";
 
 const App = () => {
   return (
@@ -37,17 +35,4 @@ App.propTypes = {
   setCityId: PropTypes.func
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  setCities(cities) {
-    dispatch(ActionCreator.setCities(cities));
-  },
-  setOffers(offers) {
-    dispatch(ActionCreator.setOffers(offers));
-  },
-  setCityId(cityId) {
-    dispatch(ActionCreator.setCityId(cityId));
-  },
-});
-
-export {App};
-export default connect(mapDispatchToProps)(App);
+export default App;

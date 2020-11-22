@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import CityItem from "../CityItem/CityItem";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../action";
+import {selectedCityPropType} from "../../propTypes/selectedCityPropType";
 
 const Cities = (props) => {
   return (
@@ -31,45 +32,7 @@ Cities.propTypes = {
     }),
     zoom: PropTypes.number
   })),
-  selectedCity: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    offers: PropTypes.arrayOf(PropTypes.shape({
-      city: PropTypes.shape({
-        name: PropTypes.string,
-        location: PropTypes.shape({
-          latitude: PropTypes.number,
-          longitude: PropTypes.number
-        }),
-        zoom: PropTypes.number
-      }),
-      previewImage: PropTypes.string,
-      images: PropTypes.arrayOf(PropTypes.string),
-      title: PropTypes.string,
-      isFavorite: PropTypes.bool,
-      isPremium: PropTypes.bool,
-      rating: PropTypes.number,
-      type: PropTypes.oneOf([`house`, `room`, `apartment`, `hotel`]),
-      bedrooms: PropTypes.number,
-      maxAdults: PropTypes.number,
-      price: PropTypes.number,
-      goods: PropTypes.arrayOf(PropTypes.string),
-      host: PropTypes.shape({
-        id: PropTypes.number,
-        name: PropTypes.string,
-        isPro: PropTypes.bool,
-        avatarUrl: PropTypes.string
-      }),
-      description: PropTypes.string,
-      location: PropTypes.shape({
-        latitude: PropTypes.number,
-        londitude: PropTypes.number,
-        zoom: PropTypes.number
-      }),
-      id: PropTypes.number
-    })),
-    coords: PropTypes.arrayOf(PropTypes.number)
-  }),
+  selectedCity: selectedCityPropType,
   setCityId: PropTypes.func
 };
 

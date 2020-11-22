@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import OffersList from "../OffersList/OffersList";
-import CommentForm from "../CommentForm/CommentForm";
 import RoomGoods from "../RoomGoods/RoomGoods";
 import RoomGallery from "../RoomGallery/RoomGallery";
 import {connect} from "react-redux";
@@ -9,41 +8,8 @@ import {Link} from "react-router-dom";
 import {ActionCreator} from "../../action";
 import ReviewsList from "../ReviewsList/ReviewsList";
 import Map from "../Map/Map";
-
-const roomPropType = PropTypes.shape({
-  city: PropTypes.shape({
-    name: PropTypes.string,
-    location: PropTypes.shape({
-      latitude: PropTypes.number,
-      longitude: PropTypes.number
-    }),
-    zoom: PropTypes.number
-  }),
-  previewImage: PropTypes.string,
-  images: PropTypes.arrayOf(PropTypes.string),
-  title: PropTypes.string,
-  isFavorite: PropTypes.bool,
-  isPremium: PropTypes.bool,
-  rating: PropTypes.number,
-  type: PropTypes.oneOf([`house`, `room`, `apartment`, `hotel`]),
-  bedrooms: PropTypes.number,
-  maxAdults: PropTypes.number,
-  price: PropTypes.number,
-  goods: PropTypes.arrayOf(PropTypes.string),
-  host: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    isPro: PropTypes.bool,
-    avatarUrl: PropTypes.string
-  }),
-  description: PropTypes.string,
-  location: PropTypes.shape({
-    latitude: PropTypes.number,
-    londitude: PropTypes.number,
-    zoom: PropTypes.number
-  }),
-  id: PropTypes.number
-});
+import {selectedCityPropType} from "../../propTypes/selectedCityPropType";
+import {offerPropType} from "../../propTypes/offerPropType";
 
 class Room extends React.Component {
   constructor(props) {
@@ -167,7 +133,7 @@ class Room extends React.Component {
               </div>
               <ReviewsList />
             </div>
-          </div>
+          </section>
           <Map
             width={`100%`}
             height={`200px`}
@@ -189,14 +155,9 @@ class Room extends React.Component {
 }
 
 Room.propTypes = {
-  selectedCity: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    offers: PropTypes.arrayOf(roomPropType),
-    coords: PropTypes.arrayOf(PropTypes.number)
-  }),
+  selectedCity: selectedCityPropType,
   match: PropTypes.object,
-  room: roomPropType,
+  room: offerPropType,
   setRoomId: PropTypes.func,
 };
 
