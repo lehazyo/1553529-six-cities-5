@@ -53,6 +53,10 @@ class Map extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    this.map.remove();
+  }
+
   render() {
     return <div id="map" style={{width: this.props.width, height: this.props.height, overflow: `hidden`}} />;
   }
