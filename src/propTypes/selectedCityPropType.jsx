@@ -5,5 +5,6 @@ export const selectedCityPropType = PropTypes.shape({
   id: PropTypes.number,
   name: PropTypes.string,
   offers: PropTypes.arrayOf(offerPropType),
-  coords: PropTypes.arrayOf(PropTypes.number)
+  sortedOffers: PropTypes.arrayOf(offerPropType),
+  coords: PropTypes.arrayOf(PropTypes.number),
 });

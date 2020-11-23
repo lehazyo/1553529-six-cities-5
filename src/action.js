@@ -3,6 +3,8 @@ export const ActionType = {
   SET_OFFERS: `SET_OFERS`,
   SET_CITIES: `SET_CITIES`,
   SET_ROOM_ID: `SET_ROOM_ID`,
+  SET_SORTING: `SET_SORTING`,
+  SET_SORTING_POPUP_VISIBLE: `SET_SORTING_POPUP_VISIBLE`,
 };
 
 export const ActionCreator = {
@@ -21,5 +23,13 @@ export const ActionCreator = {
   setRoomId: (value) => ({
     type: ActionType.SET_ROOM_ID,
     payload: value
-  })
+  }),
+  setSorting: (value) => ({
+    type: ActionType.SET_SORTING,
+    payload: value,
+  }),
+  setSortingPopupVisible: (value) => ({
+    type: ActionType.SET_SORTING_POPUP_VISIBLE,
+    payload: value,
+  }),
 };

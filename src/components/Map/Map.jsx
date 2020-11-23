@@ -39,8 +39,12 @@ class Map extends React.Component {
 
   refreshMap() {
     const zoom = 12;
-    const icon = leaflet.icon({
+    const iconRegular = leaflet.icon({
       iconUrl: `/img/pin.svg`,
+      iconSize: [27, 39]
+    });
+    const iconActive = leaflet.icon({
+      iconUrl: `/img/pin-active.svg`,
       iconSize: [27, 39]
     });
 
@@ -48,8 +52,13 @@ class Map extends React.Component {
 
     this.props.selectedCity.offers.forEach((offer) => {
       const coords = [offer.location.latitude, offer.location.longitude];
-      leaflet
-        .marker(coords, {icon})
+      let marker = leaflet.marker(coords, {icon: iconRegular});
+      marker
+        .on(`mouseover`, () => marker.setIcon(iconActive))
+        .on(`mouseout`, () => marker.setIcon(iconRegular))
+        .on(`click`, () => {
+          location.href = `/offer/${offer.id}`;
+        })
         .addTo(this.map);
     });
   }
