@@ -6,14 +6,12 @@ import Sign from "../Sign/Sign";
 import Favorites from "../Favorites/Favorites";
 import Room from "../Room/Room";
 
-const App = (props) => {
+const App = () => {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Main
-            offers={props.offers}
-          />
+          <Main />
         </Route>
         <Route exact path="/login">
           <Sign />
@@ -21,19 +19,20 @@ const App = (props) => {
         <Route exact path="/favorites">
           <Favorites />
         </Route>
-        <Route exact path="/offer/:offerId">
-          <Room
-            room={props.offers[0]}
-            offers={props.offers}
-          />
-        </Route>
+        <Route
+          exact
+          path="/offer/:offerId"
+          component={Room}
+        />
       </Switch>
     </BrowserRouter>
   );
 };
 
 App.propTypes = {
-  offers: PropTypes.array
+  setCities: PropTypes.func,
+  setOffers: PropTypes.func,
+  setCityId: PropTypes.func
 };
 
 export default App;

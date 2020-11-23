@@ -2,34 +2,54 @@ import React from "react";
 import PropTypes from "prop-types";
 import "leaflet/dist/leaflet.css";
 import leaflet from "leaflet";
+import {connect} from "react-redux";
+import {selectedCityPropType} from "../../propTypes/selectedCityPropType";
 
 class Map extends React.Component {
-
-  componentDidMount() {
-    const city = [52.38333, 4.9];
-    const icon = leaflet.icon({
-      iconUrl: `/img/pin.svg`,
-      iconSize: [27, 39]
-    });
-
+  _initializeMap() {
     const zoom = 12;
+
     this.map = leaflet.map(`map`, {
-      center: city,
+      center: this.props.selectedCity.coords,
       zoom,
       zoomControl: false,
       marker: true
     });
-    this.map.setView(city, zoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(this.map);
+  }
 
-    this.props.offers.forEach((offer) => {
+  componentDidMount() {
+    this._initializeMap();
+
+    this.refreshMap();
+  }
+
+  componentDidUpdate() {
+    this.map.remove();
+
+    this._initializeMap();
+
+    this.refreshMap();
+  }
+
+  refreshMap() {
+    const zoom = 12;
+    const icon = leaflet.icon({
+      iconUrl: `/img/pin.svg`,
+      iconSize: [27, 39]
+    });
+
+    this.map.setView(this.props.selectedCity.coords, zoom);
+
+    this.props.selectedCity.offers.forEach((offer) => {
+      const coords = [offer.location.latitude, offer.location.longitude];
       leaflet
-        .marker(offer.coords, {icon})
+        .marker(coords, {icon})
         .addTo(this.map);
     });
   }
@@ -39,23 +59,19 @@ class Map extends React.Component {
   }
 
   render() {
-    return <div
-      id="map"
-      style={{
-        width: this.props.width,
-        height: this.props.height,
-        overflow: `hidden`
-      }}
-    />;
+    return <div id="map" style={{width: this.props.width, height: this.props.height, overflow: `hidden`}} />;
   }
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    coords: PropTypes.arrayOf(PropTypes.number).isRequired
-  })).isRequired,
-  width: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired,
+  selectedCity: selectedCityPropType,
+  width: PropTypes.string,
+  height: PropTypes.string
 };
 
-export default Map;
+const mapStateToProps = (state) => ({
+  selectedCity: state.selectedCity,
+});
+
+export {Map};
+export default connect(mapStateToProps)(Map);
