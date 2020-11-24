@@ -143,7 +143,7 @@ class Room extends React.Component {
               <h2 className="near-places__title">Other places in the neighbourhood</h2>
               <div className="near-places__list places__list">
                 <OffersList
-                  offers={this.props.selectedCity.offers}
+                  offers={this.props.selectedCity.sortedOffers}
                 />
               </div>
             </section>

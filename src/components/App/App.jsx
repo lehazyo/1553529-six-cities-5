@@ -5,27 +5,34 @@ import Main from "../Main/Main";
 import Sign from "../Sign/Sign";
 import Favorites from "../Favorites/Favorites";
 import Room from "../Room/Room";
+import {Provider} from "react-redux";
+import {createStore} from "redux";
+import {reducer} from "../../reducer.js";
+
+const store = createStore(reducer);
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <Main />
-        </Route>
-        <Route exact path="/login">
-          <Sign />
-        </Route>
-        <Route exact path="/favorites">
-          <Favorites />
-        </Route>
-        <Route
-          exact
-          path="/offer/:offerId"
-          component={Room}
-        />
-      </Switch>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Main />
+          </Route>
+          <Route exact path="/login">
+            <Sign />
+          </Route>
+          <Route exact path="/favorites">
+            <Favorites />
+          </Route>
+          <Route
+            exact
+            path="/offer/:offerId"
+            component={Room}
+          />
+        </Switch>
+      </BrowserRouter>
+    </Provider>
   );
 };
 
